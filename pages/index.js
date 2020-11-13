@@ -8,10 +8,10 @@ export default function IndexPage() {
   const [userName, setUserName] = useState("");
   const [enteredName, setEnteredName] = useState(false);
   const [inventory, setInventory] = useState([]);
-  const [admin,setAdmin]= useState(false)
+  const [admin, setAdmin] = useState(false)
 
   const getOne = async () => {
-    let random = Math.floor(Math.random() * 2 + 1);
+    let random = Math.floor(Math.random() * 25 + 1);
     console.log(random);
     try {
       let queueData = await axios.post(
@@ -89,7 +89,7 @@ export default function IndexPage() {
             className="w-full px-4 py-2 mt-40 ml-2 bg-gray-200 border-2 "
             placeholder="Write Username here..."
             type="text"
-            onChange={(element) => {setUserName(element.target.value);if(element.target.value=="Admin"){setAdmin(!admin)}}}
+            onChange={(element) => { setUserName(element.target.value); if (element.target.value == "Admin") { setAdmin(!admin) } }}
           ></input>
           <div className="flex w-20 ml-auto mr-auto">
             <button
@@ -115,50 +115,50 @@ export default function IndexPage() {
             <div className={classnames("", {
               hidden: !admin,
             })}>
-            <button
-              className="w-full mt-4 bg-purple-200 rounded-md"
-              onClick={queue}
-            >
-              submit
+              <button
+                className="w-full mt-4 bg-purple-200 rounded-md"
+                onClick={queue}
+              >
+                submit
             </button>
-            
-            <label>
-              This form is to create a new a new possible charater to be drawn
+
+              <label>
+                This form is to create a new a new possible charater to be drawn
             </label>
-            <input
-              className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-black border-solid rounded-r"
-              placeholder="Write Name here..."
-              type="text"
-              onChange={(element) =>
-                setChar({ ...char, name: element.target.value })
-              }
-            />
-            <input
-              className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-2 rounded-r "
-              placeholder="Write Position here..."
-              type="text"
-              onChange={(element) =>
-                setChar({ ...char, class: element.target.value })
-              }
-            />
-            <input
-              className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-2 rounded-r "
-              placeholder="Write number here..."
-              type="text"
-              onChange={(element) =>
-                setChar({ ...char, number: element.target.value })
-              }
-            />
-            <input
-              className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-2 rounded-r "
-              placeholder="Write Link here..."
-              type="text"
-              maxLength="150"
-              onChange={(element) =>
-                setChar({ ...char, link: element.target.value })
-              }
-            />
-          </div>
+              <input
+                className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-black border-solid rounded-r"
+                placeholder="Write Name here..."
+                type="text"
+                onChange={(element) =>
+                  setChar({ ...char, name: element.target.value })
+                }
+              />
+              <input
+                className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-2 rounded-r "
+                placeholder="Write Position here..."
+                type="text"
+                onChange={(element) =>
+                  setChar({ ...char, class: element.target.value })
+                }
+              />
+              <input
+                className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-2 rounded-r "
+                placeholder="Write number here..."
+                type="text"
+                onChange={(element) =>
+                  setChar({ ...char, number: element.target.value })
+                }
+              />
+              <input
+                className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-2 rounded-r "
+                placeholder="Write Link here..."
+                type="text"
+                maxLength="150"
+                onChange={(element) =>
+                  setChar({ ...char, link: element.target.value })
+                }
+              />
+            </div>
           </div>
           <div
             className={classnames(
