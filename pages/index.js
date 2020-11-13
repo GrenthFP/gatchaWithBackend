@@ -8,9 +8,10 @@ export default function IndexPage() {
   const [userName, setUserName] = useState("");
   const [enteredName, setEnteredName] = useState(false);
   const [inventory, setInventory] = useState([]);
+  const [admin,setAdmin]= useState(false)
 
   const getOne = async () => {
-    let random = Math.floor(Math.random() * 10 + 1);
+    let random = Math.floor(Math.random() * 1 + 1);
     console.log(random);
     try {
       let queueData = await axios.post(
@@ -39,7 +40,6 @@ export default function IndexPage() {
         {
           name: char.name,
           class: char.class,
-          rarity: char.rarity,
           number: char.number,
           link: char.link,
         }
@@ -88,7 +88,7 @@ export default function IndexPage() {
             className="w-full px-4 py-2 mt-40 ml-2 bg-gray-200 border-2 "
             placeholder="Write Username here..."
             type="text"
-            onChange={(element) => setUserName(element.target.value)}
+            onChange={(element) => {setUserName(element.target.value);if(element.target.value=="Admin"){setAdmin(!admin)}}}
           ></input>
           <div className="flex w-20 ml-auto mr-auto">
             <button
@@ -107,16 +107,20 @@ export default function IndexPage() {
           >
             <button
               className="w-full mt-4 bg-purple-200 rounded-md"
-              onClick={queue}
-            >
-              submit
-            </button>
-            <button
-              className="w-full mt-4 bg-purple-200 rounded-md"
               onClick={getOne}
             >
               Draw
             </button>
+            <div className={classnames("", {
+              hidden: !admin,
+            })}>
+            <button
+              className="w-full mt-4 bg-purple-200 rounded-md"
+              onClick={queue}
+            >
+              submit
+            </button>
+            
             <label>
               This form is to create a new a new possible charater to be drawn
             </label>
@@ -130,21 +134,10 @@ export default function IndexPage() {
             />
             <input
               className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-2 rounded-r "
-              placeholder="Write Class here..."
+              placeholder="Write Position here..."
               type="text"
               onChange={(element) =>
                 setChar({ ...char, class: element.target.value })
-              }
-            />
-            <input
-              className="w-full px-4 py-2 my-2 ml-2 bg-gray-200 border-2 rounded-r "
-              placeholder="Write Rarity here..."
-              type="text"
-              onChange={(element) =>
-                setChar({
-                  ...char,
-                  rarity: element.target.value,
-                })
               }
             />
             <input
@@ -165,6 +158,7 @@ export default function IndexPage() {
               }
             />
           </div>
+          </div>
           <div
             className={classnames(
               "border space-y-2 p-8 w-64 inline-block align-top",
@@ -179,8 +173,7 @@ export default function IndexPage() {
               className="w-48"
             ></img>
             <p className="w-24">{drawnCharacter.name}</p>
-            <p>Class: {drawnCharacter.class}</p>
-            <p>Rariry: {drawnCharacter.rarity}</p>
+            <p>Position: {drawnCharacter.class}</p>
           </div>
 
           <div className="inline-block w-3/5 align-top">
@@ -196,9 +189,7 @@ export default function IndexPage() {
                   className="flex flex-col border border-black"
                 >
                   <p className="text-sm">{characters.name}</p>
-                  <p className="mt-auto text-sm">Class: {characters.class}</p>
-                  <p className="text-sm">Rarity: {characters.rarity} </p>
-
+                  <p className="mt-auto text-sm">Position: {characters.class}</p>
                   <img src={characters.link} className="w-32 "></img>
                 </div>
               ))}
