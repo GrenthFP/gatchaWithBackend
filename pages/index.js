@@ -11,7 +11,7 @@ export default function IndexPage() {
   const [admin,setAdmin]= useState(false)
 
   const getOne = async () => {
-    let random = Math.floor(Math.random() * 1 + 1);
+    let random = Math.floor(Math.random() * 2 + 1);
     console.log(random);
     try {
       let queueData = await axios.post(
