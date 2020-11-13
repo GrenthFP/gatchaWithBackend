@@ -57,6 +57,7 @@ export default function IndexPage() {
   const apply = () => {
     console.log(enteredName);
     setEnteredName(!enteredName);
+    getInventory()
   };
   const getInventory = async () => {
     try {
