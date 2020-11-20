@@ -21,10 +21,12 @@ export default function IndexPage() {
           number: random,
         }
       );
+      console.log(queueData)
       if (queueData.data.error) {
         console.log("fail");
       } else {
         console.log(queueData.data.data);
+        console.log("ok")
         setDrawnCharacter(queueData.data.data);
       }
     } catch (errorReqest) {
@@ -77,6 +79,21 @@ export default function IndexPage() {
       console.log(errorReqest);
     }
   };
+  const delet = async(num) =>{
+    try {
+      console.log(num)
+      let deleteData = await  axios.post(
+        "https://testfullapi.herokuapp.com/api/bio/del",
+        {
+          username: userName,
+          number: num
+        }
+      );
+    } catch (errorReqest) {
+      console.log(errorReqest);
+    }
+    getInventory();
+  }
   return (
     <div>
       <div>
@@ -192,6 +209,7 @@ export default function IndexPage() {
                   <p className="text-sm">{characters.name}</p>
                   <p className="mt-auto text-sm">Position: {characters.class}</p>
                   <img src={characters.link} className="w-32 "></img>
+                  <button onClick={()=>delet(characters.number)} className="bg-purple-200 ">Delete</button>
                 </div>
               ))}
             </div>
