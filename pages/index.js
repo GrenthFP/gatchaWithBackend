@@ -95,7 +95,7 @@ export default function IndexPage() {
     getInventory();
   }
   return (
-    <div>
+    <div className="w-screen h-screen bg-cover bg-football">
       <div>
         <div
           className={classnames("ml-auto mr-auto w-1/3", {
@@ -103,7 +103,7 @@ export default function IndexPage() {
           })}
         >
           <input
-            className="w-full px-4 py-2 mt-40 ml-2 bg-gray-200 border-2 "
+            className="w-full px-4 py-2 mt-40 ml-2 bg-gray-200 "
             placeholder="Write Username here..."
             type="text"
             onChange={(element) => { setUserName(element.target.value); if (element.target.value == "Admin") { setAdmin(!admin) } }}
@@ -119,7 +119,7 @@ export default function IndexPage() {
         </div>
         <div>
           <div
-            className={classnames("border w-64 pr-4 inline-block", {
+            className={classnames(" w-64 pr-4 inline-block", {
               hidden: !enteredName,
             })}
           >
@@ -179,7 +179,7 @@ export default function IndexPage() {
           </div>
           <div
             className={classnames(
-              "border space-y-2 p-8 w-64 inline-block align-top",
+              "mr-1 bg-white bg-opacity-25 space-y-2 p-8 w-64 inline-block align-top",
               {
                 hidden: !enteredName,
               }
@@ -195,16 +195,16 @@ export default function IndexPage() {
           </div>
 
           <div className="inline-block w-3/5 align-top">
-            <button onClick={getInventory}>Get Inventory</button>
+            <button className="hidden" onClick={getInventory}>Get Inventory</button>
             <div
-              className={classnames(" border border-black flex  flex-wrap", {
+              className={classnames("  flex  flex-wrap", {
                 hidden: !enteredName,
               })}
             >
               {inventory.map((characters) => (
                 <div
                   key={characters._id}
-                  className="flex flex-col border border-black"
+                  className="flex flex-col mb-1 mr-1 bg-white bg-opacity-25"
                 >
                   <p className="text-sm">{characters.name}</p>
                   <p className="mt-auto text-sm">Position: {characters.class}</p>
